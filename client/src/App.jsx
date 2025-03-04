@@ -1,5 +1,6 @@
 
-import Title from "./components/Title"
+import Banner from "./components/Banner"
+
 
 
 
@@ -7,9 +8,20 @@ function App() {
   
 
   return (
-   <main>
-    <Title>Home Page</Title>
-   </main>
+   
+   <>
+    <Banner/>
+    {/* sales */}
+
+    {/* new arraival */}
+
+    {/* Best Sellers */}
+
+    {/* product of the year */}
+
+    {/* special offer */}
+
+    </>
   )
 }
 

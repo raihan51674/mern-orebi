@@ -54,7 +54,7 @@ const router= createBrowserRouter([
       {path:"/signup",
       element: <SignUp/>},
       
-      {path:"/singleproduct",
+      {path:"/product/:id",
       element: <SingleProduct/>}
     ],
   },

@@ -10,8 +10,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div className='border-b-[1px] border-stone-300'>
-      <Container className="py-7 flex items-center gap-x-3 md:gap-x-7 justify-between ">
+    <div className='border-b-[1px] border-stone-300 sticky top-0 z-50 bg-white'>
+      <Container className="py-4 flex items-center gap-x-3 md:gap-x-7 justify-between ">
        <Link to={'/'}>
        <img src={logo} alt="logo" className=' cursor-pointer'/>
        </Link>
