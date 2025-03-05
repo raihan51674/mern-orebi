@@ -1,5 +1,6 @@
 import { bannerImgOne, bannerImgThree, bannerImgTwo } from "../assets/images";
 
+
 export const headerNavigation = [{
     title : "Home",
     link :"/",
@@ -51,3 +52,7 @@ export const bannerData =[
 
     },
 ]
+
+
+
+

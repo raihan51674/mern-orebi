@@ -3,14 +3,17 @@ import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import { bannerData } from '../constants';
 import Container from './Container';
+import { useNavigate } from 'react-router-dom';
 
 const Banner = () => {
+  const navigate =useNavigate();
 
   const [dotActive, setDotActive] = useState(0)
 
   const settings = {
     dots: true,
     infinite: true,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -128,7 +131,7 @@ const Banner = () => {
                 <h2 className='text-xl md:text-5xl max-w-sm md:max-w-xl font-bold md:leading-[55px] capitalize '>{item?.title}</h2>
                 <p className='text-xs md:text-base font-medium'>{item?.discount}</p>
                 <p className='font-medium text-sm  md:text-base'>From $ <span className='md:text-xl font-bold text-blue-700 md:ml-2 '>{item?.from}</span></p>
-                <button className='w-24 md:w-44 py-2 md:py-0 md:h-12 bg-black/80 text-white rounded-md text-xs md:text-sm uppercase hover:bg-black hoverEffect font-semibold'>Shop Now</button>
+                <button onClick={()=>navigate("/shop")} className='w-24 md:w-44 py-2 md:py-0 md:h-12 bg-black/80 text-white rounded-md text-xs md:text-sm uppercase hover:bg-black hoverEffect font-semibold'>Shop Now</button>
               </Container>
             </div>
           </div>
