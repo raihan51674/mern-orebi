@@ -1,25 +1,30 @@
 
 import Banner from "./components/Banner"
+import Container from "./components/Container"
+import Sales from "./components/Sales"
 
 
 
 
 function App() {
-  
+
 
   return (
-   
-   <>
-    <Banner/>
-    {/* sales */}
 
-    {/* new arraival */}
+    <>
+      <Banner />
+      <Container className='py-4 md:py-10'>
+        {/* sales */}
+        <Sales />
 
-    {/* Best Sellers */}
+        {/* new arraival */}
 
-    {/* product of the year */}
+        {/* Best Sellers */}
 
-    {/* special offer */}
+        {/* product of the year */}
+
+        {/* special offer */}
+      </Container>
 
     </>
   )

@@ -68,12 +68,12 @@ const Footer = () => {
           <div className='my-3'>
             
             <div className='flex items-center gap-1'>
-              <input type="text" placeholder='insert your email...*' className='text-white border-b w-full h-12 border-gray-400 bg-transparent px-4 text-lg placeholder:text-base outline-none'/>
+              <input type="text" placeholder='insert your email ...*' className='text-white border-b w-full h-12 border-gray-400 bg-transparent px-4 text-lg placeholder:text-base outline-none'/>
               <button className='px-4 py-2 bg-primary/70 border border-transparent hover:border-gray-500 duration-300 rounded-md text-white'>Subscribe</button>
             </div>
             
           </div>
-          <img src={paymentCard} alt="" />
+          <img  src={paymentCard} alt="" />
         </div>
       </Container>
     </div>
