@@ -13,7 +13,7 @@ const shopArray = [
   { title: 'New Arrivals', link: '/shop' },
 ];
 
-const Account  = [
+const Account = [
   { title: 'Profile', link: '/profile' },
   { title: 'Orders', link: '/orders' },
   { title: 'Addresses', link: '/addresses' },
@@ -24,7 +24,7 @@ const Account  = [
 const Footer = () => {
   return (
     <div className='w-full bg-[#1b1b1b] py-20 text-white/80'>
-      <Container className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10'>
+      <Container className='grid grid-cols-1 md:grid-cols-3 gap-10'>
         <div className=''>
 
           <div className='flex flex-col gap-6'>
@@ -36,44 +36,46 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* second */}
-        <div>
-          <Title className='text-xl mb-6'>Shop</Title>
-          <div className='flex flex-col gap-2'>
-            {shopArray?.map((item) => (
-              <Link key={item?.title} to={item?.link} className='text-base text-lightText hover:text-white hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300'>{item?.title}</Link>
-            ))}
+        <div className='flex gap-2 '>
+          {/* second */}
+          <div>
+            <Title className='text-xl mb-6'>Shop</Title>
+            <div className='flex flex-col gap-2'>
+              {shopArray?.map((item) => (
+                <Link key={item?.title} to={item?.link} className='text-base text-lightText hover:text-white hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300'>{item?.title}</Link>
+              ))}
+
+            </div>
 
           </div>
+          {/* third */}
 
-        </div>
-        {/* third */}
+          <div>
+            <Title className='text-xl mb-6'>Yours Account</Title>
+            <div className='flex flex-col gap-2'>
+              {Account?.map((item) => (
+                <Link key={item?.title} to={item?.link} className='text-base text-lightText hover:text-white hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300'>{item?.title}</Link>
+              ))}
 
-        <div>
-          <Title className='text-xl mb-6'>Yours Account</Title>
-          <div className='flex flex-col gap-2'>
-            {Account?.map((item) => (
-              <Link key={item?.title} to={item?.link} className='text-base text-lightText hover:text-white hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300'>{item?.title}</Link>
-            ))}
+            </div>
 
           </div>
-
         </div>
 
         {/* Forth */}
 
-        <div className='col-span-2 flex flex-col items-center w-full'>
+        <div className=' flex flex-col items-center w-full'>
           <Title className='text-xl mb-6'>Subscribe to our Newsletter.</Title>
           <p className='text-lightText text-center'>Lorem ipsum dolor sit amet.</p>
           <div className='my-3'>
-            
+
             <div className='flex items-center gap-1'>
-              <input type="text" placeholder='insert your email ...*' className='text-white border-b w-full h-12 border-gray-400 bg-transparent px-4 text-lg placeholder:text-base outline-none'/>
+              <input type="text" placeholder='insert your email ...*' className='text-white border-b w-full h-12 border-gray-400 bg-transparent px-4 text-lg placeholder:text-base outline-none' />
               <button className='px-4 py-2 bg-primary/70 border border-transparent hover:border-gray-500 duration-300 rounded-md text-white'>Subscribe</button>
             </div>
-            
+
           </div>
-          <img  src={paymentCard} alt="" />
+          <img src={paymentCard} alt="" />
         </div>
       </Container>
     </div>
