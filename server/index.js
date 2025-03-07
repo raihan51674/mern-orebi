@@ -3,6 +3,7 @@ import 'dotenv/config'
 import cors from 'cors'
 import dbConnect from "./config/mongodb.js"; //must .js add only use server
 import userRouter from "./routes/userRouter.js";
+import productRouter from "./routes/productRouter.js";
 const app =express();
 
 //use data post in frontend to database
@@ -19,7 +20,8 @@ app.get('/',(req, res)=>{
 });
 
 //all router root
-app.use('/api/user', userRouter)
+app.use('/api/user', userRouter);
+app.use('/api/product', productRouter);
 
 
 
