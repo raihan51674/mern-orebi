@@ -11,6 +11,7 @@ const createToken = (user)=>{
     _id: user._id,
     email: user.email,
     name: user.name,
+    isAdmin : user.isAdmin,
   },
 process.env.JWT_SECRET,{expiresIn:"10h"});
 };
@@ -69,7 +70,7 @@ const userLogin = async (req,res)=>{
 const userRegister = async (req,res)=>{
     try {
 
-      const {name,email,password}=await req.body;
+      const {name,email,password, isAdmin}=await req.body;
       console.log(req.body);
 
 
@@ -133,6 +134,7 @@ const userRegister = async (req,res)=>{
         name,
         email,
         password: encryptedPassword,
+        isAdmin,
       });
 
       //save user in database
@@ -158,18 +160,61 @@ const userRegister = async (req,res)=>{
 const adminLogin = async (req,res)=>{
    try {
 
-    const {email,password} = req.body;
+    const {email, password} =req.body;
 
-    if(
-      email === process.env.ADMIN_EMAIL &&
-      password===process.env.ADMIN_PASSWORD
-    ){
-      const token= jwt.sign(email + password, process.env.JWT_SECRET);
-      res.json({success:true,token,message:"welcome admin user"})
+    if(!email){
+      return res.send({
+        success:false,
+        message : " Email is required",
+      })
+    }
+    if(!password){
+      return res.send({
+        success:false,
+        message : " Password is required",
+      })
+    }
+
+    //if user exits..
+    const user = await userModel.findOne({email});
+    if(!user){
+      return res.json({success:false,message:"user doesn't exits"})
+    }
+
+    if(!user?.isAdmin){
+      return res.json({success:false,message:"you are not authrized to login"})
+    }
+
+
+    const isMatch = await bcrypt.compare(password,user.password);
+
+    
+    if(isMatch && user?.isAdmin){
+      const token = createToken(user);
+      res.json({success:true,token, message:"Admin logged in successfully"})
 
     }else{
-      res.json({success:false,message:"invalid credentials"})
+      return res.json({success:false, message: "password not matched try again"})
     }
+
+
+
+
+
+    
+
+    // const {email,password} = req.body;
+
+    // if(
+    //   email === process.env.ADMIN_EMAIL &&
+    //   password===process.env.ADMIN_PASSWORD
+    // ){
+    //   const token= jwt.sign(email + password, process.env.JWT_SECRET);
+    //   res.json({success:true,token,message:"welcome admin user"})
+
+    // }else{
+    //   res.json({success:false,message:"invalid credentials"})
+    // }
 
     
    } catch (error) {

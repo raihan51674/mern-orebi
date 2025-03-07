@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
     email :{type : String, require: true, unique:true},
     password : {type:String, require:true},
     avatar : {type : String},
+    isAdmin : {type:Boolean},
     userCart :{type:Object, default:{}},
 },
 {minimize:false} //default ar jonno dite hobe
