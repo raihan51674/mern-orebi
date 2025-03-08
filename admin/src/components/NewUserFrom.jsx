@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { IoMdClose } from 'react-icons/io'
 import { serverUrl } from '../../config.js'
-import Input, { Label } from './ui/input.tsx'
+import Input, { Label } from './ui/input.jsx'
 
 
 const NewUserFrom = ({ isOpen, close, setIsOpen, getUsersList, setselecteUsers, selecteUsers }) => {

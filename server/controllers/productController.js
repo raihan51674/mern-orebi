@@ -34,7 +34,7 @@ const addProduct=async (req,res)=>{
                     resource_type:'image'
                 })
                 return result.secure_url;
-            })
+            }) 
         )
 
 
