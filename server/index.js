@@ -1,9 +1,10 @@
+import cors from 'cors';
+import 'dotenv/config';
 import express from "express";
-import 'dotenv/config'
-import cors from 'cors'
+import connectCloudinary from "./config/cloudinary.js";
 import dbConnect from "./config/mongodb.js"; //must .js add only use server
-import userRouter from "./routes/userRouter.js";
 import productRouter from "./routes/productRouter.js";
+import userRouter from "./routes/userRouter.js";
 const app =express();
 
 //use data post in frontend to database
@@ -14,6 +15,7 @@ app.use(express.json());
 
 const port = process.env.PORT|| 3000;
 dbConnect()
+connectCloudinary()
 
 app.get('/',(req, res)=>{
     res.send('hello from  orebi api server');
