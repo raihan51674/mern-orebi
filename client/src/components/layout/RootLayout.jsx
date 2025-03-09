@@ -1,8 +1,9 @@
 import React from 'react'
-import Header from '../Header'
+import { Toaster } from 'react-hot-toast'
 import { Outlet } from 'react-router-dom'
-import ServicesTag from '../ServicesTag'
 import Footer from '../Footer'
+import Header from '../Header'
+import ServicesTag from '../ServicesTag'
 
 const RootLayout = () => {
   return (
@@ -11,6 +12,15 @@ const RootLayout = () => {
     <Outlet/>
     <ServicesTag/>
     <Footer/>
+    <Toaster 
+       position='bottom-right'
+       toastOptions={{
+        style :{
+          background : "#000000",
+          color :"#ffffff",
+        },
+       }}
+    />
       
     </>
   )

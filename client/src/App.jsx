@@ -1,6 +1,7 @@
 
 import Banner from "./components/Banner"
 import Container from "./components/Container"
+import NewArrival from "./components/NewArrival"
 import Sales from "./components/Sales"
 
 
@@ -18,6 +19,7 @@ function App() {
         <Sales />
 
         {/* new arraival */}
+        <NewArrival/>
 
         {/* Best Sellers */}
 
