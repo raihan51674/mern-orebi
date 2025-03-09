@@ -67,7 +67,7 @@ const addProduct=async (req,res)=>{
         const product = new productModel(productData)
         await product.save()
         
-        return res.send({success:false, message:`${name} added and save product in the database successfully`})
+        return res.send({success:true, message:`${name} added and save product in the database successfully`})
 
 
         
