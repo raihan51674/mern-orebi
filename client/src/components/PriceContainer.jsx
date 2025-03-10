@@ -1,9 +1,19 @@
 import React from 'react';
+import React, { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge';
 import PriceFormat from './PriceFormat';
 
 const PriceContainer = ({ item, className,priceStyle }) => {
   const discountedPrice = item?.price - (item?.discountPercent * item?.price) / 100;
+   const {products}=useSelector((state)=>state.orebi);
+   const [cartProduct, setCartProduct]=useState(null);
+   useEffect(()=>{
+    const existingProduct = products?.find((product)=>
+      product?._id === item?._id
+    );
+    setCartProduct(existingProduct)
+
+  },[item,products])
 
   return (
     <div className={twMerge('flex items-center gap-2', className)}>
