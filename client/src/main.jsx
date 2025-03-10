@@ -1,9 +1,9 @@
 
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import RootLayout from './components/layout/RootLayout.jsx'
+import './index.css'
 import About from './pages/About.jsx'
 import Cart from './pages/Cart.jsx'
 import Contact from './pages/Contact.jsx'
@@ -13,8 +13,8 @@ import Product from './pages/Products.jsx'
 import Profile from './pages/Profile.jsx'
 import Shop from './pages/Shop.jsx'
 import Signin from './pages/Signin.jsx'
-import SignUp from './pages/signUp.jsx'
 import SingleProduct from './pages/SingleProduct.jsx'
+import SignUp from './pages/signUp.jsx'
 
 const router= createBrowserRouter([
   {
