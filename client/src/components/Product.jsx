@@ -2,14 +2,15 @@ import React from 'react'
 import Badge from './Badge'
 import PriceContainer from './PriceContainer'
 import AddToCartButton from './AddToCartButton'
+import {Link}from 'react-router-dom'
 
 const Product = ({item}) => {
   return (
     <div className='w-full group pr-2.5 '>
      <div className='h-72 rounded-tr-md border border-gray-400 rounded-tl-md overflow-hidden relative'>
-      <div className='w-full h-full overflow-hidden bg-[#f3f3f3]'>
+      <Link to={`/product/${item?._id}`} className='w-full h-full overflow-hidden bg-[#f3f3f3]'>
         <img src={item?.images[0]} alt="productImage" className='w-fu h-full group-hover:scale-110 duration-300 object-cover' />
-      </div>
+      </Link>
       <div className='absolute top-2 right-2'>
         {item?.offer && <Badge title='sale' className=''/>}
       </div>

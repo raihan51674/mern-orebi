@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import { serverUrl } from '../../config'
 import Title from '../components/Title'
+import NextArrow from './NextArrow'
+import PreviousArrow from './PreviousArrow'
 import Product from './Product'
 
 const NewArrival = () => {
@@ -42,9 +44,9 @@ const NewArrival = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
-    // nextArrow : "Next",
-    // prevArrow:"Prev",
+    slidesToScroll: 2,
+    nextArrow : <NextArrow/>,
+    prevArrow:<PreviousArrow/>,
     responsive : [
       {
         breakpoint :1025,
@@ -78,12 +80,14 @@ const NewArrival = () => {
   return (
     <div className='w-full py-10'>
      
-      <Title>New Arrivals</Title>
-      <Slider {...settings}>
-        {products.map((item)=>(
+      <Title className='mb-5'>New Arrivals</Title>
+      {products?.length >0 ?  <Slider {...settings}>
+       { products?.map((item)=>(
          <Product key={item?._id} item={item}/>
         ))}
-      </Slider>
+      </Slider> : <div className='mt-4 w-full h-72 flex items-center gap-5 '> {Array.from({length:4}).map((_,i)=>(
+        <div key={i} className='rounded-md w-full h-full bg-zinc-400 animate-pulse'/>
+      ))} </div>}
      
     </div>
   )

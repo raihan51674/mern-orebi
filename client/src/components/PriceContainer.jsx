@@ -2,17 +2,17 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import PriceFormat from './PriceFormat';
 
-const PriceContainer = ({ item, className }) => {
+const PriceContainer = ({ item, className,priceStyle }) => {
   const discountedPrice = item?.price - (item?.discountPercent * item?.price) / 100;
 
   return (
     <div className={twMerge('flex items-center gap-2', className)}>
       {item?.discountPercent > 0 && (
-       <div className="text-base font-normal text-lightText line-through ">
+       <div className={twMerge('text-base font-normal text-lightText line-through ',priceStyle)}>
          <PriceFormat amount={item.price}  />
        </div>
       )}
-      <div className="text-primary font-semibold">
+      <div className={twMerge('text-primary font-semibold',priceStyle)}>
       <PriceFormat amount={discountedPrice}  />
       </div>
     </div>
