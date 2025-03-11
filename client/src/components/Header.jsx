@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {products}=useSelector((state)=>state.orebi)
+  const token = localStorage.getItem("token")
   return (
     <div className='border-b-[1px] border-stone-300 sticky top-0 z-50 bg-white'>
       <Container className="py-4 flex items-center gap-x-3 md:gap-x-7 justify-between ">
@@ -32,10 +33,10 @@ const Header = () => {
            }
            <Link to={'/cart'} className='text-2xl hover:text-primary hoverEffect relative group'> <IoMdCart/>
            <span className='absolute -right-2 -top-1 w-3.5 h-3.5 text-[9px] rounded-full bg-lightText group-hover:bg-primary text-white flex items-center justify-center hoverEffect'>{products.length>0 ? products?.length : 0 }</span> </Link>
-           <Link to={'/signin'} className='text-xl hover:text-primary hoverEffect'>
+          {token ? (<Link to='/profile' className='hover:text-primary hoverEffect cursor-pointer relative group overflow-hidden'>Profile</Link>) : ( <Link to={'/signin'} className='text-xl hover:text-primary hoverEffect'>
             <FaUserCircle/>
-           </Link>
-           
+           </Link>)
+           }
            
         </div>
         <button onClick={()=>setIsOpen(true)} className='text-2xl text-lightText hover:text-primary md:hidden hoverEffect'>
