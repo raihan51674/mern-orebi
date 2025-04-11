@@ -1,5 +1,5 @@
-import React from 'react'
-import Title from '../components/Title'
+import React from 'react';
+import Title from '../components/Title';
 
 const About = () => {
   return (
@@ -8,3 +8,5 @@ const About = () => {
 }
 
 export default About;
+
+
