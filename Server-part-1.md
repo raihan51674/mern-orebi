@@ -232,6 +232,70 @@ const {email, password} =req.body;
    }
 };
 ```
+### userContoler : remove,update ,get user
+```js
+// user remove section
+const removeUser = async (req,res)=>{
+   try {
+    await userModel.findByIdAndDelete(req.body._id)
+    res.json({success:true,message:"user Deleted successfully"})
+   } catch (error) {
+    console.log('User remove Error', error);
+    res.json({success:true, message: error?.message});
+   }
+};
+
+const updateUser = async (req,res)=>{
+  try {
+    const {_id, name, email, password}=req.body;
+    const user = await userModel.findById(_id);
+    if(!user){
+      return res.json({success:false, message: "User Not found!"});
+    }
+    //name change
+    if(name) user.name=name;
+    //email update
+    if(email){
+      if(!validator.isEmail(email)){
+        return res.json({success:false, message:"please enter a valid email address"
+        })
+      }
+      user.email=email;
+    }
+    //password change
+    if(password){
+      if(password.length <8){
+        return res.json({
+            success:false,
+            message :"password length should be equal or grater then 8 charecter",
+        });
+      }
+      const salt = await bcrypt.genSalt(10);
+      user.password=await bcrypt.hash(password, salt);
+    }
+    //updateing the user
+    await user.save()
+    res.json({success:true, message:"user updated successfully"})
+  } catch (error) {
+    console.log('User Update Error', error);
+      res.json({success:true, message: error?.message});
+  }
+};
+
+//all user data get
+const getUsers = async (req,res)=>{
+    try {
+      const total = await userModel.countDocuments({});
+      const users = await userModel.find({});
+      res.json({success:true, total,users})
+
+    } catch (error) {
+      console.log('All User gets Error', error);
+        res.json({success:true, message: error?.message});
+    }
+};
+
+```
 
 
 
