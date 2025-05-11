@@ -172,11 +172,13 @@ try {
 const {email, password} =req.body;
  if(!email){
 return res.send({success:false, message : " Email is required",})}
+
 if(!password){return res.send({success:false,message : " Password is required",})}
 //if user exits..
 const user = await userModel.findOne({email});
 if(!user){
 return res.json({success:false,message:"user doesn't exits"}) }
+
 const isMatch = await bcrypt.compare(password,user.password);
  //check database 
 if(isMatch){
@@ -190,6 +192,45 @@ console.log('user Login Error', error);
 res.json({success:true, message: error?.message}); }
 };
 
+```
+#### userControler
+```js
+//admin login
+const adminLogin = async (req,res)=>{
+try {
+const {email, password} =req.body;
+    if(!email){
+      return res.send({
+        success:false,
+        message : " Email is required",
+      })
+    }
+    if(!password){
+      return res.send({
+        success:false,
+        message : " Password is required",
+      })
+    }
+    //if user exits..
+    const user = await userModel.findOne({email});
+    if(!user){
+      return res.json({success:false,message:"user doesn't exits"})
+    }
+    if(!user?.isAdmin){
+      return res.json({success:false,message:"you are not authrized to login"})
+    }
+    const isMatch = await bcrypt.compare(password,user.password);
+    if(isMatch && user?.isAdmin){
+      const token = createToken(user);
+      res.json({success:true,token, message:"Admin logged in successfully"})
+    }else{
+      return res.json({success:false, message: "password not matched try again"})
+    }
+   } catch (error) {
+    console.log('Admin login Error', error);
+    res.json({success:true, message: error?.message});
+   }
+};
 ```
 
 
