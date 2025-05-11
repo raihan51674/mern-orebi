@@ -153,3 +153,52 @@ res.json({success:true, message: error?.message});
 }
 };
 ```
+### useController(login)
+```js
+//user login
+//1.npm i jsonwebtoken
+//user login section
+const createToken = (user)=>{
+ //all info database ar sathy milai dekbe
+return jwt.sign({
+_id: user._id,
+email: user.email,
+name: user.name,
+isAdmin : user.isAdmin, },
+process.env.JWT_SECRET,{expiresIn:"10h"}); };
+
+const userLogin = async (req,res)=>{
+try {
+const {email, password} =req.body;
+ if(!email){
+return res.send({success:false, message : " Email is required",})}
+if(!password){return res.send({success:false,message : " Password is required",})}
+//if user exits..
+const user = await userModel.findOne({email});
+if(!user){
+return res.json({success:false,message:"user doesn't exits"}) }
+const isMatch = await bcrypt.compare(password,user.password);
+ //check database 
+if(isMatch){
+const token = createToken(user);
+res.json({success:true,token, message:"user logged in successfully"})
+}else{
+return res.json({success:false, message: "Invalid Credentials try again"}) }
+     
+} catch (error) {
+console.log('user Login Error', error);
+res.json({success:true, message: error?.message}); }
+};
+
+```
+
+
+
+
+
+
+
+
+
+
+
